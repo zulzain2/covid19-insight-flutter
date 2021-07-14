@@ -1,16 +1,25 @@
-# covid19_info_flutter
+<p align="center"><a href="#"><img src="https://gitlab.com/zulwaqarzain96/covid19-insight/-/raw/master/assets/logo/coronavirus.png" width="170"></a></p>
 
-A new Flutter project.
+<p align="center">
+<a href="https://gitlab.com/ImranShamm/hse-magicx/-/pipelines"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
+</p>
 
-## Getting Started
+# COVID19 INSIGHT
+This project is to showcasing the live data on Covid-19 which include Cases, Death, Recovery, Covid Test and Vaccination. 
 
-This project is a starting point for a Flutter application.
+Data sourced from licenses repository, official organization and governments:-
+1) [DiseaseSH](https://github.com/disease-sh/API)
+2) [COVID-19 Immunisation Task Force(CITF) on Malaysia's National Covid-​19 Immunisation Programme](https://github.com/CITF-Malaysia/citf-public)
 
-A few resources to get you started if this is your first Flutter project:
+## REQUIREMENT
+- Flutter 2
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## INSTALLATION STEPS
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+**1) Clone**
+- SSH : `git clone git@gitlab.com:zulwaqarzain96/covid19-insight.git`
+- HTTPS : `git clone https://gitlab.com/zulwaqarzain96/covid19-insight.git`
+
+**2) run - `flutter pub get`**
+
+**3) run - `flutter run`** 
