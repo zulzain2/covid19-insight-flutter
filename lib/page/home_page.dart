@@ -11,6 +11,7 @@ import '../widget/window_appbar_widget.dart';
 import 'package:fluttericon/font_awesome_icons.dart';
 import 'package:fluttericon/zocial_icons.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 AppBar appBar(BuildContext context) {
   return AppBar(
@@ -42,6 +43,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   var _isInit = true;
   var _isLoading = false;
+  Future<void>? _launched;
 
   @override
   void initState() {
@@ -65,10 +67,30 @@ class _HomePageState extends State<HomePage> {
     super.didChangeDependencies();
   }
 
+ Future<void> _launchInBrowser(String url) async {
+    if (await canLaunch(url)) {
+      await launch(
+        url,
+        forceSafariVC: false,
+        forceWebView: false,
+      );
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final diseaseData = Provider.of<DiseasesShProvider>(context);
     final disease = diseaseData.diseaseSh;
+
+  void _showSnack() => ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content:
+                Text('Platform will released soon. Thanks for your patience.'),
+            duration: Duration(milliseconds: 2000),
+          ),
+        );
 
     return Scaffold(
       appBar: kIsWeb
@@ -166,7 +188,10 @@ class _HomePageState extends State<HomePage> {
                                 icon: const Icon(Icons.android_outlined),
                                 tooltip: 'Android',
                                 color: Colors.lightGreen,
-                                onPressed: () {},
+                                onPressed: () => setState(() {
+                                  _launched = _launchInBrowser(
+                                      'https://covid19.zulzayn.com/release/android/covid19_insight.apk');
+                                }),
                               ),
                             ),
                             Center(
@@ -175,7 +200,7 @@ class _HomePageState extends State<HomePage> {
                                 icon: const Icon(Zocial.macstore),
                                 tooltip: 'Apple',
                                 color: Colors.lightBlueAccent,
-                                onPressed: () {},
+                                onPressed: _showSnack,
                               ),
                             ),
                             Center(
@@ -183,7 +208,10 @@ class _HomePageState extends State<HomePage> {
                                 iconSize: 32.0,
                                 icon: const Icon(Icons.language_outlined),
                                 tooltip: 'Web',
-                                onPressed: () {},
+                                 onPressed: () => setState(() {
+                                  _launched = _launchInBrowser(
+                                      'https://covid19.zulzayn.com');
+                                }),
                               ),
                             ),
                             Center(
@@ -194,7 +222,7 @@ class _HomePageState extends State<HomePage> {
                                 ),
                                 tooltip: 'Linux',
                                 color: Colors.lightBlueAccent,
-                                onPressed: () {}, //do something,
+                                onPressed: _showSnack, //do something,
                               ),
                             ),
                             Center(
@@ -203,7 +231,10 @@ class _HomePageState extends State<HomePage> {
                                 icon: const Icon(FontAwesome.windows),
                                 tooltip: 'Windows',
                                 color: Colors.lightBlueAccent,
-                                onPressed: () {},
+                                 onPressed: () => setState(() {
+                                  _launched = _launchInBrowser(
+                                      'https://covid19.zulzayn.com/release/windows/covid19_insight.rar');
+                                }),
                               ),
                             ),
                             Center(
@@ -212,7 +243,7 @@ class _HomePageState extends State<HomePage> {
                                 icon: const Icon(FontAwesome.apple),
                                 tooltip: 'MacOS',
                                 color: Colors.grey.shade400,
-                                onPressed: () {},
+                                onPressed: _showSnack,
                               ),
                             ),
                           ],
