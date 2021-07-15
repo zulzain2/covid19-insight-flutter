@@ -8,6 +8,7 @@
 This project is to showcasing the live data on Covid-19 which include Cases, Death, Recovery, Covid Test and Vaccination. 
 
 WEB Url : https://covid19.zulzayn.com/
+
 For other Platform Android, IOS, Windows, MacOS & Linux, you can get it on the website.
 
 Data sourced from licenses repository, official organization and governments:-
